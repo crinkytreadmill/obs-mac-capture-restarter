@@ -5,10 +5,10 @@ function check_capture_status()
         local source_id = obslua.obs_source_get_unversioned_id(source)
         if source_id == "screen_capture" then
             local properties = obslua.obs_source_properties(source)
-            local reactivateBtn = obslua.obs_properties_get(properties, "reactivate_capture")
-            local canReactivate = obslua.obs_property_enabled(reactivateBtn)
-            if canReactivate then
-                obslua.obs_property_button_clicked(reactivateBtn, source)
+            local reactivate_btn = obslua.obs_properties_get(properties, "reactivate_capture")
+            local can_reactivate = obslua.obs_property_enabled(reactivate_btn)
+            if can_reactivate then
+                obslua.obs_property_button_clicked(reactivate_btn, source)
                 print("Restarted screen capture")
             end
             obslua.obs_properties_destroy(properties)
