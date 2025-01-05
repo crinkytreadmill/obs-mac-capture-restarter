@@ -23,7 +23,7 @@ function script_description()
 end
     
 function script_load(settings)
-    obslua.timer_add(check_capture_status, 1000)
+    obslua.timer_add(check_capture_status, 15000)
 end
 
 function script_unload()
