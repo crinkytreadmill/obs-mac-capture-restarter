@@ -27,6 +27,7 @@ This script automatically monitors all screen capture and audio sources in your 
 - **Screen Capture**: macOS screen capture sources
 - **Audio Input**: Microphone and other input devices (coreaudio_input_capture)
 - **Audio Output**: System audio and speaker output (coreaudio_output_capture)
+- **macOS Audio Capture**: Desktop audio capture using ScreenCaptureKit (sck_audio_capture)
 
 ## Installation
 
@@ -90,7 +91,13 @@ Currently, there are no user-configurable options, but you can modify the script
 
 ### How Detection Works
 
-The script identifies frozen sources by checking if the "reactivate_capture" property is enabled on screen capture and audio sources. This property only becomes available when OBS detects that a source has become unresponsive.
+The script identifies frozen sources by checking if restart/reactivate properties are enabled on supported sources. For maximum compatibility, the script tries multiple property names:
+
+- `restart_capture` (used by macOS Audio Capture)
+- `reactivate_capture` (used by screen capture and CoreAudio sources)
+- `restart` and `reactivate` (fallback options)
+
+This property becomes available when OBS detects that a source has become unresponsive.
 
 ## Troubleshooting
 
